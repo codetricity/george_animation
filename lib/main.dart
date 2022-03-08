@@ -43,6 +43,7 @@ class MyGeorgeGame extends FlameGame with TapDetector {
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
 
+  @override
   Future<void> onLoad() async {
     await super.onLoad();
 
