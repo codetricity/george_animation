@@ -35,7 +35,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   late SpriteAnimation upAnimation;
   late SpriteAnimation idleAnimation;
 
-  late SpriteAnimationComponent george;
+  late GeorgeComponent george;
   // late SpriteComponent background;
   late double mapWidth;
   late double mapHeight;
@@ -91,9 +91,10 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     idleAnimation =
         spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, to: 1);
 
-    george = SpriteAnimationComponent()
+    george = GeorgeComponent()
       ..animation = idleAnimation
       ..position = Vector2(100, 200)
+      ..debugMode = true
       ..size = Vector2.all(characterSize);
 
     add(george);
@@ -156,8 +157,23 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   }
 }
 
-class FriendObject extends PositionComponent with HasHitboxes, Collidable {
+class FriendObject extends PositionComponent
+    with HasHitboxes, Collidable, HasGameRef {
   FriendObject() {
+    addHitbox(HitboxRectangle());
+  }
+
+  @override
+  void onCollisionEnd(Collidable other) {
+    print('made a new friend');
+    remove(this);
+    super.onCollisionEnd(other);
+  }
+}
+
+class GeorgeComponent extends SpriteAnimationComponent
+    with HasHitboxes, Collidable {
+  GeorgeComponent() {
     addHitbox(HitboxRectangle());
   }
 }
