@@ -14,4 +14,4 @@ Tutorial to change animation in Flame.
 * sprite character movement with change of animation
 * overlay of Flutter widgets on top of FlameGame
 * music with FlameAudio.bgm
-* 
+

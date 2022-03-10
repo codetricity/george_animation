@@ -45,6 +45,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   final double characterSize = 100;
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
+  int friendNumber = 0;
 
   @override
   Future<void> onLoad() async {
@@ -59,7 +60,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     final friendGroup = homeMap.tileMap.getObjectGroupFromLayer('Friends');
 
     for (var friendBox in friendGroup.objects) {
-      add(FriendComponent()
+      add(FriendComponent(game: this)
         ..position = Vector2(friendBox.x, friendBox.y)
         ..width = friendBox.width
         ..height = friendBox.height
@@ -69,6 +70,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     FlameAudio.bgm.initialize();
     FlameAudio.audioCache.load('music.mp3');
     overlays.add('ButtonController');
+    // overlays.addListener(() {});
 
     final spriteSheet = SpriteSheet(
         image: await images.load('george2.png'), srcSize: Vector2(48, 48));
@@ -150,16 +152,30 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
 }
 
 class FriendComponent extends PositionComponent with HasHitboxes, Collidable {
-  FriendComponent() {
+  final MyGeorgeGame game;
+  FriendComponent({required this.game}) {
     addHitbox(HitboxRectangle());
   }
 
   @override
-  void onCollisionEnd(Collidable other) {
+  void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
+    super.onCollision(intersectionPoints, other);
     print('I made a new friend!');
+    game.friendNumber++;
+    print(game.friendNumber);
+    game.overlays.notifyListeners();
     remove(this);
-    super.onCollisionEnd(other);
   }
+
+  // @override
+  // void onCollisionEnd(Collidable other) {
+  //   print('I made a new friend!');
+  //   game.friendNumber++;
+  //   print(game.friendNumber);
+  //   game.overlays.notifyListeners();
+  //   remove(this);
+  //   super.onCollisionEnd(other);
+  // }
 }
 
 class GeorgeComponent extends SpriteAnimationComponent
