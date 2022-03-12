@@ -4,9 +4,8 @@ import 'package:flame/sprite.dart';
 import 'package:george/main.dart';
 
 class GeorgeComponent extends SpriteAnimationComponent
-    with HasHitboxes, Collidable, HasGameRef {
-  final MyGeorgeGame game;
-  GeorgeComponent({required this.game}) {
+    with HasHitboxes, Collidable, HasGameRef<MyGeorgeGame> {
+  GeorgeComponent() {
     addHitbox(HitboxRectangle());
   }
   late SpriteAnimation downAnimation;
@@ -38,34 +37,34 @@ class GeorgeComponent extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    switch (game.direction) {
+    switch (gameRef.direction) {
       case 0:
         animation = idleAnimation;
         break;
       case 1:
         animation = downAnimation;
-        if (y < game.mapHeight - height) {
-          y += dt * game.characterSpeed;
+        if (y < gameRef.mapHeight - height) {
+          y += dt * gameRef.characterSpeed;
         }
         break;
       case 2:
         animation = leftAnimation;
         if (x > 0) {
-          x -= dt * game.characterSpeed;
+          x -= dt * gameRef.characterSpeed;
         }
 
         break;
       case 3:
         animation = upAnimation;
         if (y > 0) {
-          y -= dt * game.characterSpeed;
+          y -= dt * gameRef.characterSpeed;
         }
 
         break;
       case 4:
         animation = rightAnimation;
-        if (x < game.mapWidth - width) {
-          x += dt * game.characterSpeed;
+        if (x < gameRef.mapWidth - width) {
+          x += dt * gameRef.characterSpeed;
         }
         break;
     }

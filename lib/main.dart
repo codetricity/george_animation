@@ -1,9 +1,11 @@
+import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
+import 'package:george/characters/baked_good.dart';
 import 'button_controller.dart';
 import 'characters/friend_component.dart';
 import 'characters/george_component.dart';
@@ -38,12 +40,14 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
   int friendNumber = 0;
+  int bakedGoodsInventory = 0;
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final homeMap = await TiledComponent.load('map.tmx', Vector2.all(16));
+    TiledComponent homeMap =
+        await TiledComponent.load('map.tmx', Vector2.all(16));
     add(homeMap);
 
     mapWidth = homeMap.tileMap.map.width * 16.0;
@@ -59,12 +63,14 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
         ..debugMode = true);
     }
 
+    addBakedGoods(homeMap);
+
     FlameAudio.bgm.initialize();
     FlameAudio.audioCache.load('music.mp3');
     FlameAudio.bgm.play('music.mp3');
     overlays.add('ButtonController');
 
-    george = GeorgeComponent(game: this)
+    george = GeorgeComponent()
       ..position = Vector2(100, 200)
       ..debugMode = true
       ..size = Vector2.all(characterSize);
@@ -91,6 +97,45 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     direction += 1;
     if (direction > 4) {
       direction = 0;
+    }
+  }
+
+  void addBakedGoods(TiledComponent homeMap) async {
+    var bakedGoods = homeMap.tileMap.getObjectGroupFromLayer('BakedGoods');
+    for (var bakedGood in bakedGoods.objects) {
+      switch (bakedGood.type) {
+        case 'ApplePie':
+          Sprite sprite = await loadSprite('apple_pie.png');
+          add(BakedGood()
+            ..sprite = sprite
+            ..size = Vector2(bakedGood.width, bakedGood.height)
+            ..position = Vector2(bakedGood.x, bakedGood.y));
+          break;
+        case 'Cookie':
+          Sprite sprite = await loadSprite('cookies.png');
+          print('adding cookie');
+          add(BakedGood()
+            ..sprite = sprite
+            ..size = Vector2(bakedGood.width, bakedGood.height)
+            ..position = Vector2(bakedGood.x, bakedGood.y));
+          break;
+        case 'CheeseCake':
+          Sprite sprite = await loadSprite('cheesecake.png');
+          print('adding cheesecake');
+          add(BakedGood()
+            ..sprite = sprite
+            ..size = Vector2(bakedGood.width, bakedGood.height)
+            ..position = Vector2(bakedGood.x, bakedGood.y));
+          break;
+        case 'ChocoCake':
+          Sprite sprite = await loadSprite('choco_cake.png');
+          print('adding chocolate cake');
+          add(BakedGood()
+            ..sprite = sprite
+            ..size = Vector2(bakedGood.width, bakedGood.height)
+            ..position = Vector2(bakedGood.x, bakedGood.y));
+          break;
+      }
     }
   }
 }
