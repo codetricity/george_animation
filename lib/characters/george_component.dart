@@ -7,7 +7,7 @@ class GeorgeComponent extends SpriteAnimationComponent
     with HasHitboxes, Collidable, HasGameRef {
   final MyGeorgeGame game;
   GeorgeComponent({required this.game}) {
-    addHitbox(HitboxRectangle());
+    addHitbox(HitboxRectangle(relation: Vector2.all(0.75)));
   }
   late SpriteAnimation downAnimation;
   late SpriteAnimation leftAnimation;

@@ -5,8 +5,10 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'button_controller.dart';
+import 'characters/baked_good_component.dart';
 import 'characters/friend_component.dart';
 import 'characters/george_component.dart';
+import 'loaders/add_baked_goods.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +40,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
   int friendNumber = 0;
+  int bakedGoodsInventory = 0;
 
   @override
   Future<void> onLoad() async {
@@ -48,6 +51,8 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
 
     mapWidth = homeMap.tileMap.map.width * 16.0;
     mapHeight = homeMap.tileMap.map.height * 16.0;
+
+    addBakedGoods(homeMap, this);
 
     final friendGroup = homeMap.tileMap.getObjectGroupFromLayer('Friends');
 
