@@ -21,4 +21,18 @@ Tutorial to change animation in Flame.
 * sprite character movement with change of animation
 * overlay of Flutter widgets on top of FlameGame
 * music with FlameAudio.bgm
-* 
+
+## Thanks and Credits
+
+### Graphic Art
+
+* George (star character of our game): https://opengameart.org/content/alternate-lpc-character-sprites-george from user sheep Radomir Dopieralski
+* Baked Goods:  https://ghostpixxells.itch.io/pixelfood
+* Main tileset for map: https://limezu.itch.io/serenevillagerevamped - LimeZu
+* Additional assets: https://limezu.itch.io/moderninteriors - LimeZu
+
+## Audio Art
+
+* Applause https://freesound.org/people/timtube/sounds/169834/
+* Yummy https://freesound.org/people/dorr1/sounds/338959/
+* Music https://www.bensound.com/royalty-free-music/track/ukulele

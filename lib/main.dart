@@ -5,6 +5,7 @@ import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
+import 'package:george/dialog/dialog_box.dart';
 import 'button_controller.dart';
 import 'characters/baked_good_component.dart';
 import 'characters/friend_component.dart';
@@ -45,6 +46,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
 
   late AudioPool yummy;
   late AudioPool applause;
+  late DialogBox dialogBox;
 
   @override
   Future<void> onLoad() async {
@@ -60,6 +62,12 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     yummy = await AudioPool.create('yummy.mp3');
     applause = await AudioPool.create('applause.mp3');
 
+    dialogBox = DialogBox(
+        text: 'Hi.  I am George.  I\'ve just '
+            'moved to Happy Bay Village. I want to make friends.',
+        game: this);
+
+    add(dialogBox);
     final friendGroup = homeMap.tileMap.getObjectGroupFromLayer('Friends');
 
     for (var friendBox in friendGroup.objects) {
