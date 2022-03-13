@@ -64,6 +64,7 @@ flutter:
   assets:
     - assets/images/
     - assets/audio/
+    - assets/audio/sfx/
     - assets/tiles/map.tmx
   #   - images/a_dot_ham.jpeg
 
