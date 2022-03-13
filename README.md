@@ -13,7 +13,7 @@ Tutorial to change animation in Flame.
 * [Flame Sprite Collision with Tiled Object Bounding Boxes - George 5](https://youtu.be/o0QHxcwoJ3w)
 * [Flutter Friend Overlay on Flame Game Screen - George 6](https://youtu.be/qCm7JxT3eWI)
 * [Tiled Object Layer for Flutter Flame Asset Placement and Collision - George 7](https://youtu.be/B34zIl87ekc)
-
+* [Use Tiled Object Layer as SpriteComponents in Flutter Flame - George](https://youtu.be/yygYUDA3SUY)
 
 
 ## Learning Objections
