@@ -13,6 +13,7 @@ class FriendComponent extends PositionComponent with HasHitboxes, Collidable {
     print('I made a new friend!');
     game.friendNumber++;
     game.overlays.notifyListeners();
+    game.applause.start();
     remove(this);
     super.onCollision(intersectionPoints, other);
   }

@@ -1,6 +1,7 @@
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,9 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   int friendNumber = 0;
   int bakedGoodsInventory = 0;
 
+  late AudioPool yummy;
+  late AudioPool applause;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -53,6 +57,8 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     mapHeight = homeMap.tileMap.map.height * 16.0;
 
     addBakedGoods(homeMap, this);
+    yummy = await AudioPool.create('yummy.mp3');
+    applause = await AudioPool.create('applause.mp3');
 
     final friendGroup = homeMap.tileMap.getObjectGroupFromLayer('Friends');
 
