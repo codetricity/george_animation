@@ -12,6 +12,7 @@ class FriendComponent extends PositionComponent with HasHitboxes, Collidable {
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
     print('I made a new friend!');
     game.friendNumber++;
+    game.applause.start();
     game.overlays.notifyListeners();
     remove(this);
     super.onCollision(intersectionPoints, other);

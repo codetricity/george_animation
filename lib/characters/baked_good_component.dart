@@ -14,6 +14,7 @@ class BakedGoodComponent extends SpriteComponent
     gameRef.bakedGoodsInventory++;
     gameRef.overlays.notifyListeners();
     print('baked goods inventory: ${gameRef.bakedGoodsInventory}');
+    gameRef.yummy.start();
     gameRef.remove(this);
   }
 }
