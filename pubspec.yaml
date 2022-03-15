@@ -66,6 +66,7 @@ flutter:
     - assets/audio/
     - assets/audio/sfx/
     - assets/tiles/map.tmx
+    - assets/tiles/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
