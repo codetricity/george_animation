@@ -37,7 +37,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
 
   // 0=idle, 1=down, 2= left, 3= up, 4=right
   int direction = 0;
-  final double characterSize = 100;
+  final double characterSize = 64;
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
   int friendNumber = 0;
@@ -57,7 +57,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     mapWidth = homeMap.tileMap.map.width * 16.0;
     mapHeight = homeMap.tileMap.map.height * 16.0;
 
-    // addBakedGoods(homeMap, this);
+    addBakedGoods(homeMap, this);
     addFriends(homeMap, this);
     yummy = await AudioPool.create('yummy.mp3');
     applause = await AudioPool.create('applause.mp3');
