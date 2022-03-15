@@ -38,7 +38,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
 
   // 0=idle, 1=down, 2= left, 3= up, 4=right
   int direction = 0;
-  final double characterSize = 100;
+  final double characterSize = 64;
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
   int friendNumber = 0;
@@ -52,7 +52,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final homeMap = await TiledComponent.load('map.tmx', Vector2.all(16));
+    final homeMap = await TiledComponent.load('happy_map.tmx', Vector2.all(16));
     add(homeMap);
 
     mapWidth = homeMap.tileMap.map.width * 16.0;
