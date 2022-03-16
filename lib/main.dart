@@ -6,11 +6,11 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'button_controller.dart';
-import 'characters/baked_good_component.dart';
 import 'characters/friend_component.dart';
 import 'characters/george_component.dart';
 import 'dialog/dialog_box.dart';
 import 'loaders/add_baked_goods.dart';
+import 'loaders/load_obstacles.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +38,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
 
   // 0=idle, 1=down, 2= left, 3= up, 4=right
   int direction = 0;
+  int collisionDirection = -1;
   final double characterSize = 64;
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
@@ -52,7 +53,8 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final homeMap = await TiledComponent.load('happy_map.tmx', Vector2.all(16));
+    final homeMap =
+        await TiledComponent.load('happy_map_dev.tmx', Vector2.all(16));
     add(homeMap);
 
     mapWidth = homeMap.tileMap.map.width * 16.0;
@@ -68,6 +70,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
             'moved to Happy Bay Village. '
             'I want to make friends.');
     add(dialogBox);
+    loadObstacles(homeMap, this);
     final friendGroup = homeMap.tileMap.getObjectGroupFromLayer('Friends');
 
     for (var friendBox in friendGroup.objects) {
