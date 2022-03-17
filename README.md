@@ -4,6 +4,23 @@ Tutorial to change animation in Flame.
 
 ![screenshot](readme_assets/screenshot.gif)
 
+## Running Code
+
+If you downloaded the code as a zipped file, first extract the zipped folder, then rename the folder `george_animation-main` to eliminate the hyphen.
+
+![rename folder](readme_assets/file_rename.png)
+
+From the command line, in the directory with the `pubspec.yaml` 
+file, run `flutter pub get`.
+
+Start an Android Virtual Device (AVD).
+
+In must cases, the Android emulator will have the name  `emulator-5554`.  
+
+If this is the case, run `flutter -d emulator-5554`.
+
+![run starter](readme_assets/start_emulator.png)
+
 ## Tutorials
 
 * [Flame Animated Sprites Movement with Flutter - George 1](https://youtu.be/_PbvL1IO_e4)
@@ -11,7 +28,7 @@ Tutorial to change animation in Flame.
 * [Flutter overlay on Flame - George 3](https://youtu.be/2OADb-P01fA)
 * [Flame background music - George 4](https://youtu.be/a8dWaCl3lKk)
 * [Flame Sprite Collision with Tiled Object Bounding Boxes - George 5](https://youtu.be/o0QHxcwoJ3w)
-* [Flutter Friend Overlay on Flame Game Screen - George 6](https://youtu.be/qCm7JxT3eWI)
+* [Flutter Friend Overlay on Flame Game Screen - George 6]()
 * [Tiled Object Layer for Flutter Flame Asset Placement and Collision - George 7](https://youtu.be/B34zIl87ekc)
 * [Use Tiled Object Layer as SpriteComponents in Flutter Flame - George](https://youtu.be/yygYUDA3SUY)
 
