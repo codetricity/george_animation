@@ -5,6 +5,7 @@ import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
+import 'package:george/loaders/load_friends.dart';
 import 'button_controller.dart';
 import 'characters/baked_good_component.dart';
 import 'characters/friend_component.dart';
@@ -58,7 +59,10 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     mapWidth = homeMap.tileMap.map.width * 16.0;
     mapHeight = homeMap.tileMap.map.height * 16.0;
 
+    // load characters and players
     addBakedGoods(homeMap, this);
+    loadFriends(homeMap, this);
+
     yummy = await AudioPool.create('yummy.mp3');
     applause = await AudioPool.create('applause.mp3');
 
@@ -68,15 +72,6 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
             'moved to Happy Bay Village. '
             'I want to make friends.');
     add(dialogBox);
-    final friendGroup = homeMap.tileMap.getObjectGroupFromLayer('Friends');
-
-    for (var friendBox in friendGroup.objects) {
-      add(FriendComponent(game: this)
-        ..position = Vector2(friendBox.x, friendBox.y)
-        ..width = friendBox.width
-        ..height = friendBox.height
-        ..debugMode = true);
-    }
 
     FlameAudio.bgm.initialize();
     FlameAudio.audioCache.load('music.mp3');
