@@ -34,6 +34,7 @@ class GeorgeComponent extends SpriteAnimationComponent
         spriteSheet.createAnimation(row: 3, stepTime: animationSpeed, to: 4);
     idleAnimation =
         spriteSheet.createAnimation(row: 0, stepTime: animationSpeed, to: 1);
+    animation = idleAnimation;
   }
 
   @override
