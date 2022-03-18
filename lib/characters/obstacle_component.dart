@@ -5,6 +5,7 @@ import 'package:george/main.dart';
 
 class ObstacleComponent extends PositionComponent with HasHitboxes, Collidable {
   final MyGeorgeGame game;
+  bool _hasCollided = false;
   ObstacleComponent({required this.game}) {
     addHitbox(HitboxRectangle());
   }
@@ -14,8 +15,12 @@ class ObstacleComponent extends PositionComponent with HasHitboxes, Collidable {
     super.onCollision(intersectionPoints, other);
 
     if (other is GeorgeComponent) {
-      game.collisionDirection = game.direction;
-      print('collision with obstacle in direction: ${game.collisionDirection}');
+      if (!_hasCollided) {
+        game.collisionDirection = game.direction;
+        _hasCollided = true;
+        print(
+            'collision with obstacle in direction: ${game.collisionDirection}');
+      }
     }
   }
 
@@ -23,6 +28,7 @@ class ObstacleComponent extends PositionComponent with HasHitboxes, Collidable {
   void onCollisionEnd(Collidable other) {
     if (other is GeorgeComponent) {
       game.collisionDirection = -1;
+      _hasCollided = false;
     }
   }
 }
