@@ -46,27 +46,35 @@ class GeorgeComponent extends SpriteAnimationComponent
       case 1:
         animation = downAnimation;
         if (y < game.mapHeight - height) {
-          y += dt * game.characterSpeed;
+          if (game.collisionDirection != 1) {
+            y += dt * game.characterSpeed;
+          }
         }
         break;
       case 2:
         animation = leftAnimation;
         if (x > 0) {
-          x -= dt * game.characterSpeed;
+          if (game.collisionDirection != 2) {
+            x -= dt * game.characterSpeed;
+          }
         }
 
         break;
       case 3:
         animation = upAnimation;
         if (y > 0) {
-          y -= dt * game.characterSpeed;
+          if (game.collisionDirection != 3) {
+            y -= dt * game.characterSpeed;
+          }
         }
 
         break;
       case 4:
         animation = rightAnimation;
         if (x < game.mapWidth - width) {
-          x += dt * game.characterSpeed;
+          if (game.collisionDirection != 4) {
+            x += dt * game.characterSpeed;
+          }
         }
         break;
     }

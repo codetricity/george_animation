@@ -6,6 +6,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:george/loaders/load_friends.dart';
+import 'package:george/loaders/load_obstacles.dart';
 import 'button_controller.dart';
 import 'characters/baked_good_component.dart';
 import 'characters/friend_component.dart';
@@ -37,8 +38,12 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   late double mapWidth;
   late double mapHeight;
 
+  // direction of George
   // 0=idle, 1=down, 2= left, 3= up, 4=right
   int direction = 0;
+  // if collisionDirection is -1, there is no collision
+  int collisionDirection = -1;
+
   final double characterSize = 64;
   final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
@@ -62,6 +67,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     // load characters and players
     addBakedGoods(homeMap, this);
     loadFriends(homeMap, this);
+    loadObstacles(homeMap, this);
 
     yummy = await AudioPool.create('yummy.mp3');
     applause = await AudioPool.create('applause.mp3');
