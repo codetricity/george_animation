@@ -3,6 +3,8 @@ import 'package:flame/geometry.dart';
 import 'package:george/characters/george_component.dart';
 import 'package:george/main.dart';
 
+import '../my_george_game.dart';
+
 class ObstacleComponent extends PositionComponent with HasHitboxes, Collidable {
   final MyGeorgeGame game;
   bool _hasCollided = false;
