@@ -50,6 +50,11 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   int friendNumber = 0;
   int bakedGoodsInventory = 0;
 
+  String dialogMessage = 'Hi.  I am George.  I have just '
+      'moved to Happy Bay Village. '
+      'I want to make friends.';
+  bool showDialog = true;
+
   late AudioPool yummy;
   late AudioPool applause;
   late DialogBox dialogBox;
@@ -72,12 +77,8 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     yummy = await AudioPool.create('yummy.mp3');
     applause = await AudioPool.create('applause.mp3');
 
-    dialogBox = DialogBox(
-        game: this,
-        text: 'Hi.  I am George.  I have just '
-            'moved to Happy Bay Village. '
-            'I want to make friends.');
-    add(dialogBox);
+    // dialogBox = DialogBox(game: this, text: dialogMessage);
+    // add(dialogBox);
 
     FlameAudio.bgm.initialize();
     FlameAudio.audioCache.load('music.mp3');

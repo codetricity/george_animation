@@ -8,7 +8,7 @@ class DialogBox extends TextBoxComponent {
   DialogBox({required String text, required this.game})
       : super(
             text: text,
-            position: game.size,
+            position: game.canvasSize,
             boxConfig: TextBoxConfig(
               dismissDelay: 5.0,
               maxWidth: game.size.x * .5,
@@ -26,6 +26,7 @@ class DialogBox extends TextBoxComponent {
   @override
   void update(double dt) {
     super.update(dt);
+
     if (finished) {
       game.remove(this);
     }
