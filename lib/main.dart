@@ -58,7 +58,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final homeMap = await TiledComponent.load('happy_map.tmx', Vector2.all(16));
+    final homeMap = await TiledComponent.load('map.tmx', Vector2.all(16));
     add(homeMap);
 
     mapWidth = homeMap.tileMap.map.width * 16.0;
