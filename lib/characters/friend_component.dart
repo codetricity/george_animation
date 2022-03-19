@@ -3,6 +3,8 @@ import 'package:flame/geometry.dart';
 import 'package:george/dialog/dialog_box.dart';
 import 'package:george/main.dart';
 
+import '../my_george_game.dart';
+
 class FriendComponent extends PositionComponent with HasHitboxes, Collidable {
   final MyGeorgeGame game;
   FriendComponent({required this.game}) {

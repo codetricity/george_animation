@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
-import 'package:george/main.dart';
+import '../my_george_game.dart';
 
 class BakedGoodComponent extends SpriteComponent
     with HasHitboxes, Collidable, HasGameRef<MyGeorgeGame> {
