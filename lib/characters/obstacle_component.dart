@@ -2,13 +2,15 @@ import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:george/characters/george_component.dart';
 import 'package:george/main.dart';
+import 'package:george/world/scene.dart';
 
-import '../my_george_game.dart';
+import '../world/my_george_game.dart';
 
-class ObstacleComponent extends PositionComponent with HasHitboxes, Collidable {
-  final MyGeorgeGame game;
+class ObstacleComponent extends PositionComponent
+    with HasHitboxes, Collidable, HasGameRef<MyGeorgeGame> {
+  final WorldScene worldScene;
   bool _hasCollided = false;
-  ObstacleComponent({required this.game}) {
+  ObstacleComponent({required this.worldScene}) {
     addHitbox(HitboxRectangle());
   }
 
@@ -18,10 +20,10 @@ class ObstacleComponent extends PositionComponent with HasHitboxes, Collidable {
 
     if (other is GeorgeComponent) {
       if (!_hasCollided) {
-        game.collisionDirection = game.direction;
+        worldScene.collisionDirection = gameRef.direction;
         _hasCollided = true;
         print(
-            'collision with obstacle in direction: ${game.collisionDirection}');
+            'collision with obstacle in direction: ${worldScene.collisionDirection}');
       }
     }
   }
@@ -29,7 +31,7 @@ class ObstacleComponent extends PositionComponent with HasHitboxes, Collidable {
   @override
   void onCollisionEnd(Collidable other) {
     if (other is GeorgeComponent) {
-      game.collisionDirection = -1;
+      worldScene.collisionDirection = -1;
       _hasCollided = false;
     }
   }

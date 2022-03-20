@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/components.dart';
-import 'package:flame/image_composition.dart';
-import '../my_george_game.dart';
+import '../world/my_george_game.dart';
 
 class DialogBox extends TextBoxComponent {
   final MyGeorgeGame game;

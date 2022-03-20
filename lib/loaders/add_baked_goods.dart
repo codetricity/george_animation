@@ -1,15 +1,17 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:george/world/scene.dart';
 import '../characters/baked_good_component.dart';
-import '../my_george_game.dart';
+import '../world/my_george_game.dart';
 
-void addBakedGoods(TiledComponent homeMap, MyGeorgeGame game) async {
+void addBakedGoods(
+    TiledComponent homeMap, WorldScene worldScene, MyGeorgeGame game) async {
   final bakedGoodsGroup = homeMap.tileMap.getObjectGroupFromLayer('BakedGoods');
 
   for (var bakedGood in bakedGoodsGroup.objects) {
     switch (bakedGood.type) {
       case 'ApplePie':
-        game.add(BakedGoodComponent()
+        worldScene.add(BakedGoodComponent(worldScene: worldScene, game: game)
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('apple_pie.png')
@@ -17,7 +19,7 @@ void addBakedGoods(TiledComponent homeMap, MyGeorgeGame game) async {
           ..debugMode = true);
         break;
       case 'Cookie':
-        game.add(BakedGoodComponent()
+        worldScene.add(BakedGoodComponent(worldScene: worldScene, game: game)
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('cookies.png')
@@ -25,7 +27,7 @@ void addBakedGoods(TiledComponent homeMap, MyGeorgeGame game) async {
           ..debugMode = true);
         break;
       case 'CheeseCake':
-        game.add(BakedGoodComponent()
+        worldScene.add(BakedGoodComponent(worldScene: worldScene, game: game)
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('cheesecake.png')
@@ -33,7 +35,7 @@ void addBakedGoods(TiledComponent homeMap, MyGeorgeGame game) async {
           ..debugMode = true);
         break;
       case 'ChocoCake':
-        game.add(BakedGoodComponent()
+        worldScene.add(BakedGoodComponent(worldScene: worldScene, game: game)
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('choco_cake.png')

@@ -1,14 +1,17 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
-import '../my_george_game.dart';
+import 'package:george/world/scene.dart';
+import '../world/my_george_game.dart';
 
 class GeorgeComponent extends SpriteAnimationComponent
-    with HasHitboxes, Collidable, HasGameRef {
-  final MyGeorgeGame game;
-  GeorgeComponent({required this.game}) {
+    with HasHitboxes, Collidable, HasGameRef<MyGeorgeGame> {
+  final WorldScene worldScene;
+  GeorgeComponent({required this.worldScene, required this.game}) {
     addHitbox(HitboxRectangle(relation: Vector2.all(0.4)));
   }
+
+  final MyGeorgeGame game;
   late SpriteAnimation downAnimation;
   late SpriteAnimation leftAnimation;
   late SpriteAnimation rightAnimation;
@@ -20,8 +23,7 @@ class GeorgeComponent extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final spriteSheet = SpriteSheet(
-        image: await gameRef.images.load('george2.png'),
-        srcSize: Vector2(48, 48));
+        image: await game.images.load('george2.png'), srcSize: Vector2(48, 48));
 
     // new
     downAnimation =
@@ -39,24 +41,24 @@ class GeorgeComponent extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    if (!game.showDialog) {
-      switch (game.direction) {
+    if (!worldScene.showDialog) {
+      switch (gameRef.direction) {
         case 0:
           animation = idleAnimation;
           break;
         case 1:
           animation = downAnimation;
-          if (y < game.mapHeight - height) {
-            if (game.collisionDirection != 1) {
-              y += dt * game.characterSpeed;
+          if (y < worldScene.mapHeight - height) {
+            if (worldScene.collisionDirection != 1) {
+              y += dt * gameRef.characterSpeed;
             }
           }
           break;
         case 2:
           animation = leftAnimation;
           if (x > 0) {
-            if (game.collisionDirection != 2) {
-              x -= dt * game.characterSpeed;
+            if (worldScene.collisionDirection != 2) {
+              x -= dt * gameRef.characterSpeed;
             }
           }
 
@@ -64,17 +66,17 @@ class GeorgeComponent extends SpriteAnimationComponent
         case 3:
           animation = upAnimation;
           if (y > 0) {
-            if (game.collisionDirection != 3) {
-              y -= dt * game.characterSpeed;
+            if (worldScene.collisionDirection != 3) {
+              y -= dt * gameRef.characterSpeed;
             }
           }
 
           break;
         case 4:
           animation = rightAnimation;
-          if (x < game.mapWidth - width) {
-            if (game.collisionDirection != 4) {
-              x += dt * game.characterSpeed;
+          if (x < worldScene.mapWidth - width) {
+            if (worldScene.collisionDirection != 4) {
+              x += dt * gameRef.characterSpeed;
             }
           }
           break;
