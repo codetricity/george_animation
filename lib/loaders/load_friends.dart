@@ -12,6 +12,7 @@ void loadFriends(TiledComponent homeMap, MyGeorgeGame game) {
       ..width = friendBox.width
       ..height = friendBox.height
       ..debugMode = true;
+    game.maxFriends++;
     game.componentList.add(friend);
     game.add(friend);
   }

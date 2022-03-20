@@ -11,6 +11,10 @@ import 'loaders/load_friends.dart';
 import 'loaders/load_obstacles.dart';
 
 class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
+  final double characterSize = 64;
+  final double characterSpeed = 80;
+  final maxScenes = 3;
+
   late GeorgeComponent george;
   late double mapWidth;
   late double mapHeight;
@@ -21,10 +25,9 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   // if collisionDirection is -1, there is no collision
   int collisionDirection = -1;
 
-  final double characterSize = 64;
-  final double characterSpeed = 80;
   String soundTrackName = 'ukulele';
   int friendNumber = 0;
+  int maxFriends = 0;
   int bakedGoodsInventory = 0;
 
   late AudioPool yummy;
@@ -37,6 +40,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
       'I want to make friends.';
   late TiledComponent homeMap;
   List<Component> componentList = [];
+  int sceneNumber = 1;
 
   @override
   Future<void> onLoad() async {
@@ -80,11 +84,12 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     }
   }
 
-  void newScene(int sceneNumber) async {
+  void newScene() async {
     String mapFile = 'map.tmx';
     remove(homeMap);
     bakedGoodsInventory = 0;
     friendNumber = 0;
+    maxFriends = 0;
     FlameAudio.bgm.stop();
     removeAll(componentList);
     componentList = [];

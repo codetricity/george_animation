@@ -31,16 +31,16 @@ class AudioOverlay extends StatelessWidget {
             },
           ),
         ),
-        Container(
-          color: const Color(0x8f37474f),
-          child: IconButton(
-            icon: const Icon(Icons.map_outlined),
-            color: Colors.pink.shade200,
-            onPressed: () {
-              game.newScene(2);
-            },
-          ),
-        ),
+        // Container(
+        //   color: const Color(0x8f37474f),
+        //   child: IconButton(
+        //     icon: const Icon(Icons.map_outlined),
+        //     color: Colors.pink.shade200,
+        //     onPressed: () {
+        //       game.newScene(2);
+        //     },
+        //   ),
+        // ),
       ],
     );
   }

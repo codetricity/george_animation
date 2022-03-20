@@ -21,6 +21,12 @@ class FriendComponent extends PositionComponent with HasHitboxes, Collidable {
         game.friendNumber++;
         game.bakedGoodsInventory--;
         game.applause.start();
+        if (game.maxFriends == game.friendNumber) {
+          if (game.sceneNumber < game.maxScenes) {
+            game.sceneNumber++;
+            game.newScene();
+          }
+        }
       } else {
         game.dialogMessage =
             'Great to meet you.  Sorry, I have to run to a meeting.';
