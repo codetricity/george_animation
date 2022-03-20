@@ -1,8 +1,9 @@
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:george/world/my_george_game.dart';
 import 'overlays/overlay_controller.dart';
-import 'my_george_game.dart';
+import 'world/scene.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

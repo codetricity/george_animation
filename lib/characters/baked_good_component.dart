@@ -1,20 +1,21 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
-import '../my_george_game.dart';
+import '../world/scene.dart';
 
-class BakedGoodComponent extends SpriteComponent
-    with HasHitboxes, Collidable, HasGameRef<MyGeorgeGame> {
-  BakedGoodComponent() {
+class BakedGoodComponent extends SpriteComponent with HasHitboxes, Collidable {
+  BakedGoodComponent({required this.scene}) {
     debugMode = true;
     addHitbox(HitboxRectangle(relation: Vector2.all(0.5)));
   }
 
+  final Scene scene;
+
   @override
   void onCollision(Set<Vector2> intersectionPoints, Collidable other) {
-    gameRef.bakedGoodsInventory++;
-    gameRef.yummy.start();
-    gameRef.overlays.notifyListeners();
-    print('baked goods inventory: ${gameRef.bakedGoodsInventory}');
-    gameRef.remove(this);
+    scene.bakedGoodsInventory++;
+    scene.yummy.start();
+    scene.game.overlays.notifyListeners();
+    print('baked goods inventory: ${scene.bakedGoodsInventory}');
+    scene.remove(this);
   }
 }

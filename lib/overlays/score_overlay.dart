@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../my_george_game.dart';
+import '../world/scene.dart';
 
 class ScoreOverlay extends StatelessWidget {
   const ScoreOverlay({
     Key? key,
-    required this.game,
+    required this.scene,
   }) : super(key: key);
 
-  final MyGeorgeGame game;
+  final Scene scene;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class ScoreOverlay extends StatelessWidget {
         Container(
           color: const Color.fromARGB(167, 218, 218, 218),
           child: Text(
-            '${game.friendNumber}',
+            '${scene.friendNumber}',
             style: const TextStyle(fontSize: 28, color: Colors.black45),
           ),
         ),
@@ -46,7 +46,7 @@ class ScoreOverlay extends StatelessWidget {
         Container(
           color: const Color.fromARGB(167, 218, 218, 218),
           child: Text(
-            '${game.bakedGoodsInventory}',
+            '${scene.bakedGoodsInventory}',
             style: const TextStyle(fontSize: 28, color: Colors.black45),
           ),
         ),

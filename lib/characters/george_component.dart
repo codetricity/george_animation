@@ -1,12 +1,12 @@
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'package:flame/sprite.dart';
-import '../my_george_game.dart';
+import '../world/scene.dart';
 
 class GeorgeComponent extends SpriteAnimationComponent
     with HasHitboxes, Collidable, HasGameRef {
-  final MyGeorgeGame game;
-  GeorgeComponent({required this.game}) {
+  final Scene scene;
+  GeorgeComponent({required this.scene}) {
     addHitbox(HitboxRectangle(relation: Vector2.all(0.4)));
   }
   late SpriteAnimation downAnimation;
@@ -39,24 +39,24 @@ class GeorgeComponent extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    if (!game.showDialog) {
-      switch (game.direction) {
+    if (!scene.showDialog) {
+      switch (scene.direction) {
         case 0:
           animation = idleAnimation;
           break;
         case 1:
           animation = downAnimation;
-          if (y < game.mapHeight - height) {
-            if (game.collisionDirection != 1) {
-              y += dt * game.characterSpeed;
+          if (y < scene.mapHeight - height) {
+            if (scene.collisionDirection != 1) {
+              y += dt * scene.characterSpeed;
             }
           }
           break;
         case 2:
           animation = leftAnimation;
           if (x > 0) {
-            if (game.collisionDirection != 2) {
-              x -= dt * game.characterSpeed;
+            if (scene.collisionDirection != 2) {
+              x -= dt * scene.characterSpeed;
             }
           }
 
@@ -64,17 +64,17 @@ class GeorgeComponent extends SpriteAnimationComponent
         case 3:
           animation = upAnimation;
           if (y > 0) {
-            if (game.collisionDirection != 3) {
-              y -= dt * game.characterSpeed;
+            if (scene.collisionDirection != 3) {
+              y -= dt * scene.characterSpeed;
             }
           }
 
           break;
         case 4:
           animation = rightAnimation;
-          if (x < game.mapWidth - width) {
-            if (game.collisionDirection != 4) {
-              x += dt * game.characterSpeed;
+          if (x < scene.mapWidth - width) {
+            if (scene.collisionDirection != 4) {
+              x += dt * scene.characterSpeed;
             }
           }
           break;

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:george/my_george_game.dart';
+import 'package:george/world/scene.dart';
 
 class DialogOverlay extends StatelessWidget {
-  const DialogOverlay({Key? key, required this.game}) : super(key: key);
+  const DialogOverlay({Key? key, required this.scene}) : super(key: key);
 
-  final MyGeorgeGame game;
+  final Scene scene;
 
   @override
   Widget build(BuildContext context) {
-    return game.showDialog
+    return scene.showDialog
         ? Container(
             color: const Color.fromARGB(167, 218, 218, 218),
             child: AnimatedTextKit(
               animatedTexts: [
                 TyperAnimatedText(
-                  game.dialogMessage,
+                  scene.dialogMessage,
                   textStyle: const TextStyle(fontSize: 18),
                   speed: const Duration(milliseconds: 100),
                 ),
@@ -23,8 +23,8 @@ class DialogOverlay extends StatelessWidget {
               isRepeatingAnimation: false,
               onFinished: () {
                 print('text dialog is finished');
-                game.showDialog = false;
-                game.overlays.notifyListeners();
+                scene.showDialog = false;
+                scene.game.overlays.notifyListeners();
               },
             ),
           )
