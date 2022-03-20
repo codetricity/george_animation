@@ -35,6 +35,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   String dialogMessage = 'Hi.  I am George.  I have just '
       'moved to Happy Bay Village. '
       'I want to make friends.';
+  bool showDialog = true;
 
   @override
   Future<void> onLoad() async {
