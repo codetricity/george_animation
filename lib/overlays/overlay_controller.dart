@@ -5,15 +5,10 @@ import '../my_george_game.dart';
 import 'audio_overlay.dart';
 import 'score_overlay.dart';
 
-class OverlayController extends StatefulWidget {
+class OverlayController extends StatelessWidget {
   final MyGeorgeGame game;
-  OverlayController({Key? key, required this.game}) : super(key: key);
+  const OverlayController({Key? key, required this.game}) : super(key: key);
 
-  @override
-  State<OverlayController> createState() => _OverlayControllerState();
-}
-
-class _OverlayControllerState extends State<OverlayController> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,12 +19,8 @@ class _OverlayControllerState extends State<OverlayController> {
           padding: const EdgeInsets.all(20.0),
           child: Row(
             children: [
-              Expanded(flex: 2, child: ScoreOverlay(game: widget.game)),
-              Expanded(
-                  flex: 2,
-                  child: DialogOverlay(
-                    widget: widget,
-                  )),
+              Expanded(flex: 2, child: ScoreOverlay(game: game)),
+              const Expanded(flex: 2, child: DialogOverlay()),
             ],
           ),
         )
