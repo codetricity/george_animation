@@ -101,7 +101,10 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
       ..size = Vector2.all(characterSize);
 
     if (sceneNumber == 2) {
+      george.position.x = 300;
       mapFile = 'happy_map.tmx';
+    } else if (sceneNumber == 3) {
+      mapFile = 'scene3.tmx';
     }
 
     homeMap = await TiledComponent.load(mapFile, Vector2.all(16));
