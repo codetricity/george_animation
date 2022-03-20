@@ -28,8 +28,8 @@ class FriendComponent extends PositionComponent with HasHitboxes, Collidable {
       } else {
         message = 'Great to meet you.  Sorry, I have to run to a meeting.';
       }
-      game.dialogBox = DialogBox(text: message, game: game);
-      game.add(game.dialogBox);
+      // game.dialogBox = DialogBox(text: message, game: game);
+      // game.add(game.dialogBox);
       remove(this);
     }
 
