@@ -31,6 +31,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   late AudioPool yummy;
   late AudioPool applause;
   // late DialogBox dialogBox;
+  bool showDialog = true;
 
   String dialogMessage = 'Hi.  I am George.  I have just '
       'moved to Happy Bay Village. '

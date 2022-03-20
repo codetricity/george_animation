@@ -20,7 +20,11 @@ class OverlayController extends StatelessWidget {
           child: Row(
             children: [
               Expanded(flex: 2, child: ScoreOverlay(game: game)),
-              const Expanded(flex: 2, child: DialogOverlay()),
+              Expanded(
+                  flex: 2,
+                  child: DialogOverlay(
+                    game: game,
+                  )),
             ],
           ),
         )
