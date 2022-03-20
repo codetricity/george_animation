@@ -14,7 +14,7 @@ class OverlayController extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const AudioOverlay(),
+        AudioOverlay(game: game),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: Row(
