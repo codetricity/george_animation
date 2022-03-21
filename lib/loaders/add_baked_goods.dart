@@ -9,36 +9,44 @@ void addBakedGoods(TiledComponent homeMap, MyGeorgeGame game) async {
   for (var bakedGood in bakedGoodsGroup.objects) {
     switch (bakedGood.type) {
       case 'ApplePie':
-        game.add(BakedGoodComponent()
+        var applePie = BakedGoodComponent()
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('apple_pie.png')
           ..height = bakedGood.height
-          ..debugMode = true);
+          ..debugMode = true;
+        game.componentList.add(applePie);
+        game.add(applePie);
         break;
       case 'Cookie':
-        game.add(BakedGoodComponent()
+        var cookie = BakedGoodComponent()
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('cookies.png')
           ..height = bakedGood.height
-          ..debugMode = true);
+          ..debugMode = true;
+        game.componentList.add(cookie);
+        game.add(cookie);
         break;
       case 'CheeseCake':
-        game.add(BakedGoodComponent()
+        var cheeseCake = BakedGoodComponent()
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('cheesecake.png')
           ..height = bakedGood.height
-          ..debugMode = true);
+          ..debugMode = true;
+        game.componentList.add(cheeseCake);
+        game.add(cheeseCake);
         break;
       case 'ChocoCake':
-        game.add(BakedGoodComponent()
+        var chocoCake = BakedGoodComponent()
           ..position = Vector2(bakedGood.x, bakedGood.y)
           ..width = bakedGood.width
           ..sprite = await game.loadSprite('choco_cake.png')
           ..height = bakedGood.height
-          ..debugMode = true);
+          ..debugMode = true;
+        game.componentList.add(chocoCake);
+        game.add(chocoCake);
         break;
     }
   }
