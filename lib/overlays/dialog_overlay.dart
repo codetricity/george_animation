@@ -16,7 +16,7 @@ class DialogOverlay extends StatelessWidget {
               animatedTexts: [
                 TyperAnimatedText(
                   game.dialogMessage,
-                  textStyle: const TextStyle(fontSize: 18),
+                  textStyle: const TextStyle(fontSize: 28, fontFamily: 'vt323'),
                   speed: const Duration(milliseconds: 100),
                 ),
               ],
