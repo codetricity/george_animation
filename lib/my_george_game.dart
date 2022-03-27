@@ -5,6 +5,7 @@ import 'package:flame/input.dart';
 import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:george/loaders/load_gems.dart';
 import 'characters/george_component.dart';
 import 'loaders/add_baked_goods.dart';
 import 'loaders/load_friends.dart';
@@ -29,9 +30,10 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
 
   int friendNumber = 0;
   int maxFriends = 0;
-  int sceneNumber = 1;
+  int sceneNumber = 3;
 
   int bakedGoodsInventory = 0;
+  int gemInventory = 0;
 
   late AudioPool yummy;
   late AudioPool applause;
@@ -96,7 +98,8 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
   }
 
   void newScene() async {
-    String mapFile = 'happy_map.tmx';
+    // String mapFile = 'happy_map.tmx';
+    String mapFile = 'scene4.tmx';
     print('change to a new scene');
     // remove old scene
     remove(homeMap);
@@ -117,6 +120,9 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     } else if (sceneNumber == 3) {
       print('moving to scene 3');
       mapFile = 'scene3.tmx';
+    } else if (sceneNumber == 4) {
+      print('moving to scene 4');
+      mapFile = 'scene4.tmx';
     }
 
     homeMap = await TiledComponent.load(mapFile, Vector2.all(16));
@@ -127,6 +133,9 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollidables {
     addBakedGoods(homeMap, this);
     loadFriends(homeMap, this);
     loadObstacles(homeMap, this);
+    if (sceneNumber == 4) {
+      loadGems(homeMap, this);
+    }
     add(george);
     camera.followComponent(george,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
