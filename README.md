@@ -47,6 +47,8 @@ If this is the case, run `flutter -d emulator-5554`.
 * Baked Goods:  https://ghostpixxells.itch.io/pixelfood
 * Main tileset for map: https://limezu.itch.io/serenevillagerevamped - LimeZu
 * Additional friend assets: https://limezu.itch.io/moderninteriors - LimeZu
+* Gems: https://cainos.itch.io/pixel-art-icon-pack-rpg
+* Mossy Cavern: https://maaot.itch.io/mossy-cavern
 
 ## Learning Objections
 
